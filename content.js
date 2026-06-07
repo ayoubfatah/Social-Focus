@@ -254,6 +254,7 @@ function handleYouTube(path) {
     ytd-guide-entry-renderer a[href="/shorts"] { display: none !important; }
     #endpoint[href^="/shorts"] { display: none !important; }
     ytd-mini-guide-entry-renderer a[href="/shorts"] { display: none !important; }
+   a[title="Shorts"] { display: none !important; }
   `);
 }
 
