@@ -1,6 +1,6 @@
 # SocialFocus
 
-A Chrome extension that helps you stay focused by blocking the distracting parts of social media, such as reels, shorts, feeds, explore pages, and stories.
+A Chrome extension that helps you stay focused by blocking the distracting parts of social media, such as reels, shorts, feeds, explore pages, stories, and other attention-draining sections.
 
 SocialFocus lets you choose between blocking only addictive content or blocking full social media websites completely. It also includes a focus timer lock, so once a session starts, the selected mode cannot be disabled from the popup until the timer ends.
 
@@ -11,7 +11,8 @@ SocialFocus lets you choose between blocking only addictive content or blocking 
 - Block Facebook Watch, Reels, Stories, and feed pages
 - Block TikTok For You and feed pages
 - Block X / Twitter feed and distracting sections
-- Keep useful pages like messages and profiles accessible
+- Block LinkedIn feed and distracting sections
+- Keep useful pages like messages, profiles, and search accessible where possible
 - Switch between partial blocking and full social media blocking
 - Lock the current focus mode with a timer
 - Keep the timer lock active after page reloads and browser restarts
@@ -29,6 +30,7 @@ Examples:
 - Instagram messages are allowed, but Reels and Explore are blocked
 - TikTok profiles/messages are allowed, but the For You feed is blocked
 - X / Twitter messages and profiles are allowed, but the main feed is blocked
+- LinkedIn profiles, messages, and job pages can remain accessible, while the main feed is blocked
 
 ### Full Social Block
 
@@ -56,6 +58,7 @@ The timer state is stored using `chrome.storage.sync`.
 - Facebook
 - TikTok
 - X / Twitter
+- LinkedIn
 
 ## Tech Stack
 
@@ -123,9 +126,10 @@ However, Chrome extensions cannot fully stop a user from manually disabling or r
 
 ## Why I Built This
 
-I built SocialFocus because I wanted to use social media intentionally without getting trapped by infinite scrolling, reels, shorts, and feeds.
+I built SocialFocus because I wanted to use social media intentionally without getting trapped by infinite scrolling, reels, shorts, feeds, and distracting recommendation pages.
 
 The goal is not to block every platform forever.
+
 The goal is to keep the useful parts and remove the parts that waste attention.
 
 ## Future Improvements
