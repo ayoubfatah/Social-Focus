@@ -241,7 +241,7 @@ function handleTikTok(path) {
 
 // YouTube
 function handleYouTube(path) {
-  if (path === "/" || path.startsWith("/shorts")) {
+  if (path.includes("/shorts")) {
     location.replace("https://www.youtube.com/feed/subscriptions");
     return;
   }
