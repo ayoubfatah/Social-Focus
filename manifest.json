@@ -9,7 +9,8 @@
     "https://www.facebook.com/*",
     "https://www.tiktok.com/*",
     "https://www.x.com/*",
-    "https://www.youtube.com/*"
+    "https://www.linkedin.com/*",
+    "https://linkedin.com/*"
   ],
   "icons": {
     "16": "icons/icon16.png",
@@ -33,7 +34,8 @@
         "https://www.facebook.com/*",
         "https://www.tiktok.com/*",
         "https://www.x.com/*",
-        "https://www.youtube.com/*"
+        "https://www.linkedin.com/*",
+        "https://linkedin.com/*"
       ],
       "js": ["content.js"],
       "run_at": "document_start"

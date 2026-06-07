@@ -5,12 +5,14 @@ const SOCIAL_HOSTS = [
   "tiktok.com",
   "youtube.com",
   "x.com",
+  "linkedin.com",
 ];
 const SOCIAL_HOSTS_FULL_BLOCK = [
   "instagram.com",
   "facebook.com",
   "tiktok.com",
   "x.com",
+  "linkedin.com",
 ];
 
 let lastUrl = location.href;
@@ -76,10 +78,11 @@ function applyRules(blockMode = "reels") {
     }
 
     if (host.includes("instagram.com")) handleInstagram(path);
-    else if (host.includes("facebook.com")) handleFacebook(path);
-    else if (host.includes("tiktok.com")) handleTikTok(path);
-    else if (host.includes("youtube.com")) handleYouTube(path);
-    else if (host.includes("x.com")) handleX(path);
+    if (host.includes("facebook.com")) handleFacebook(path);
+    if (host.includes("tiktok.com")) handleTikTok(path);
+    if (host.includes("youtube.com")) handleYouTube(path);
+    if (host.includes("x.com")) handleX(path);
+    if (host.includes("linkedin.com")) handleLinkedIn(path);
   } finally {
     applyingRules = false;
   }
@@ -97,6 +100,32 @@ function isSocialHost(host) {
 }
 function isSocialHostFullBlock(host) {
   return SOCIAL_HOSTS_FULL_BLOCK.some((domain) => host.includes(domain));
+}
+
+// linkedin
+
+function handleLinkedIn(path) {
+  const blocked =
+    path === "/" ||
+    path === "" ||
+    path.startsWith("/feed") ||
+    path.startsWith("/mynetwork") ||
+    path.startsWith("/jobs") ||
+    path.startsWith("/notifications");
+
+  if (blocked) {
+    location.replace("https://www.linkedin.com/messaging/");
+    return;
+  }
+  injectStyle(`
+    a[href="https://www.linkedin.com/feed/?nis=true&"] { display: none !important; }
+    a[href="https://www.linkedin.com/mynetwork/?"] { display: none !important; }
+    a[href="https://www.linkedin.com/jobs/?"] { display: none !important; }
+    a[href="https://www.linkedin.com/jobs/?"] { display: none !important; }
+    a[href="https://www.linkedin.com/notifications/?"] { display: none !important; }
+    a[href="https://www.linkedin.com/notifications/?filter=all&refresh=true"] { display: none !important; }
+
+  `);
 }
 
 // X
