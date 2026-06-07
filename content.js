@@ -143,8 +143,14 @@ function handleInstagram(path) {
     a[href="/reels/"] { display: none !important; }
     a[href="/explore/"] { display: none !important; }
     [aria-label="Reels"] { display: none !important; }
+    [aria-label="Search"] { display: none !important; }
     [href*="/reels"] { display: none !important; }
     [href*="/explore"] { display: none !important; }
+    a:has(svg[aria-label="Search"]) { display: none !important; }
+    a:has(svg[aria-label="Notifications"]) { display: none !important; }
+    a:has(svg[aria-label="New post"]) { display: none !important; }
+  }
+  }
   `);
 }
 
