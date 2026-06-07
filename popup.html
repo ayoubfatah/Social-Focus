@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="logo">
+        <div class="app-logo" aria-hidden="true">
+          <img src="./icons/icon32.png" alt="" />
+        </div>
+        <div>
+          <div class="logo-name">SocialFocus</div>
+          <div class="logo-sub">Feed + social blocker</div>
+        </div>
+      </div>
+
+      <div class="status-badge active" id="statusBadge">
+        <div class="status-dot active" id="statusDot"></div>
+        <span id="statusText">Active</span>
+      </div>
+    </div>
+
+    <div class="master-toggle" id="masterToggle">
+      <div>
+        <div class="toggle-label">Reels / Feed Protection</div>
+        <div class="toggle-value" id="toggleLabel">Blocking enabled</div>
+      </div>
+      <label
+        class="switch"
+        aria-label="Enable or disable reels and feed protection"
+      >
+        <input type="checkbox" id="mainToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="section-label">Blocking mode</div>
+
+    <label class="mode-card selected" id="reelsModeCard">
+      <input type="radio" name="blockMode" value="reels" id="reelsMode" />
+      <div>
+        <div class="mode-title">Only block reels / feeds</div>
+        <div class="mode-desc">
+          Keep useful pages like messages and profiles.
+        </div>
+      </div>
+    </label>
+
+    <label class="mode-card" id="fullModeCard">
+      <input type="radio" name="blockMode" value="full" id="fullMode" />
+      <div>
+        <div class="mode-title">Block full social media</div>
+        <div class="mode-desc">
+          Stop opening supported social platforms completely.
+        </div>
+      </div>
+    </label>
+
+    <div class="timer-card">
+      <div class="card-label">Focus timer lock</div>
+      <div class="mode-title">Lock focus mode</div>
+
+      <div class="timer-row">
+        <input
+          class="timer-input"
+          id="timerMinutes"
+          type="number"
+          min="1"
+          max="1440"
+          step="1"
+          value="30"
+          aria-label="Timer minutes"
+        />
+        <button class="btn primary" id="startTimerBtn">Start timer</button>
+      </div>
+
+      <div class="timer-status" id="timerStatus">No active lock.</div>
+    </div>
+
+    <div class="section-label">Platforms</div>
+
+    <div class="platform-list" id="platformList">
+      <div class="platform-row" data-platform="instagram">
+        <div class="platform-header">
+          <div
+            class="platform-icon"
+            style="background: #f0094a18; color: #f0094a"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              fill="none"
+            >
+              <rect
+                x="2"
+                y="2"
+                width="28"
+                height="28"
+                rx="6"
+                fill="url(#instagram_paint0)"
+              />
+              <rect
+                x="2"
+                y="2"
+                width="28"
+                height="28"
+                rx="6"
+                fill="url(#instagram_paint1)"
+              />
+              <rect
+                x="2"
+                y="2"
+                width="28"
+                height="28"
+                rx="6"
+                fill="url(#instagram_paint2)"
+              />
+              <path
+                d="M23 10.5C23 11.3284 22.3284 12 21.5 12C20.6716 12 20 11.3284 20 10.5C20 9.67157 20.6716 9 21.5 9C22.3284 9 23 9.67157 23 10.5Z"
+                fill="white"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M16 21C18.7614 21 21 18.7614 21 16C21 13.2386 18.7614 11 16 11C13.2386 11 11 13.2386 11 16C11 18.7614 13.2386 21 16 21ZM16 19C17.6569 19 19 17.6569 19 16C19 14.3431 17.6569 13 16 13C14.3431 13 13 14.3431 13 16C13 17.6569 14.3431 19 16 19Z"
+                fill="white"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M6 15.6C6 12.2397 6 10.5595 6.65396 9.27606C7.2292 8.14708 8.14708 7.2292 9.27606 6.65396C10.5595 6 12.2397 6 15.6 6H16.4C19.7603 6 21.4405 6 22.7239 6.65396C23.8529 7.2292 24.7708 8.14708 25.346 9.27606C26 10.5595 26 12.2397 26 15.6V16.4C26 19.7603 26 21.4405 25.346 22.7239C24.7708 23.8529 23.8529 24.7708 22.7239 25.346C21.4405 26 19.7603 26 16.4 26H15.6C12.2397 26 10.5595 26 9.27606 25.346C8.14708 24.7708 7.2292 23.8529 6.65396 22.7239C6 21.4405 6 19.7603 6 16.4V15.6ZM15.6 8H16.4C18.1132 8 19.2777 8.00156 20.1779 8.0751C21.0548 8.14674 21.5032 8.27659 21.816 8.43597C22.5686 8.81947 23.1805 9.43139 23.564 10.184C23.7234 10.4968 23.8533 10.9452 23.9249 11.8221C23.9984 12.7223 24 13.8868 24 15.6V16.4C24 18.1132 23.9984 19.2777 23.9249 20.1779C23.8533 21.0548 23.7234 21.5032 23.564 21.816C23.1805 22.5686 22.5686 23.1805 21.816 23.564C21.5032 23.7234 21.0548 23.8533 20.1779 23.9249C19.2777 23.9984 18.1132 24 16.4 24H15.6C13.8868 24 12.7223 23.9984 11.8221 23.9249C10.9452 23.8533 10.4968 23.7234 10.184 23.564C9.43139 23.1805 8.81947 22.5686 8.43597 21.816C8.27659 21.5032 8.14674 21.0548 8.0751 20.1779C8.00156 19.2777 8 18.1132 8 16.4V15.6C8 13.8868 8.00156 12.7223 8.0751 11.8221C8.14674 10.9452 8.27659 10.4968 8.43597 10.184C8.81947 9.43139 9.43139 8.81947 10.184 8.43597C10.4968 8.27659 10.9452 8.14674 11.8221 8.0751C12.7223 8.00156 13.8868 8 15.6 8Z"
+                fill="white"
+              />
+              <defs>
+                <radialGradient
+                  id="instagram_paint0"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(12 23) rotate(-55.3758) scale(25.5196)"
+                >
+                  <stop stop-color="#B13589" />
+                  <stop offset="0.79309" stop-color="#C62F94" />
+                  <stop offset="1" stop-color="#8A3AC8" />
+                </radialGradient>
+                <radialGradient
+                  id="instagram_paint1"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(11 31) rotate(-65.1363) scale(22.5942)"
+                >
+                  <stop stop-color="#E0E8B7" />
+                  <stop offset="0.444662" stop-color="#FB8A2E" />
+                  <stop offset="0.71474" stop-color="#E2425C" />
+                  <stop offset="1" stop-color="#E2425C" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient
+                  id="instagram_paint2"
+                  cx="0"
+                  cy="0"
+                  r="1"
+                  gradientUnits="userSpaceOnUse"
+                  gradientTransform="translate(0.500002 3) rotate(-8.1301) scale(38.8909 8.31836)"
+                >
+                  <stop offset="0.156701" stop-color="#406ADC" />
+                  <stop offset="0.467799" stop-color="#6A45BE" />
+                  <stop offset="1" stop-color="#6A45BE" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="platform-name">Instagram</span>
+        </div>
+      </div>
+
+      <div class="platform-row" data-platform="facebook">
+        <div class="platform-header">
+          <div
+            class="platform-icon"
+            style="background: #1877f218; color: #57a0ff"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <path
+                fill="#57a0ff"
+                d="M25.638355,48 L2.649232,48 C1.185673,48 0,46.813592 0,45.350603 L0,2.649211 C0,1.18585 1.185859,0 2.649232,0 L45.350955,0 C46.813955,0 48,1.18585 48,2.649211 L48,45.350603 C48,46.813778 46.813769,48 45.350955,48 L33.119305,48 L33.119305,29.411755 L39.358521,29.411755 L40.292755,22.167586 L33.119305,22.167586 L33.119305,17.542641 C33.119305,15.445287 33.701712,14.01601 36.70929,14.01601 L40.545311,14.014333 L40.545311,7.535091 C39.881886,7.446808 37.604784,7.24957 34.955552,7.24957 C29.424834,7.24957 25.638355,10.625526 25.638355,16.825209 L25.638355,22.167586 L19.383122,22.167586 L19.383122,29.411755 L25.638355,29.411755 L25.638355,48 Z"
+              />
+            </svg>
+          </div>
+          <span class="platform-name">Facebook</span>
+        </div>
+      </div>
+
+      <div class="platform-row" data-platform="tiktok">
+        <div class="platform-header">
+          <div class="platform-icon" style="background: #ffffff10; color: #fff">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="TikTok"
+              role="img"
+              viewBox="0 0 512 512"
+            >
+              <rect rx="15%" height="512" width="512" fill="#ffffff" />
+              <defs>
+                <path
+                  id="tiktok_shape"
+                  d="M219 200a117 117 0 1 0 101 115v-128a150 150 0 0 0 88 28v-63a88 88 0 0 1-88-88h-64v252a54 54 0 1 1-37-51z"
+                  style="mix-blend-mode: multiply"
+                />
+              </defs>
+              <use href="#tiktok_shape" fill="#f05" x="18" y="15" />
+              <use href="#tiktok_shape" fill="#0ee" />
+            </svg>
+          </div>
+          <span class="platform-name">TikTok</span>
+        </div>
+      </div>
+
+      <div class="platform-row" data-platform="youtube">
+        <div class="platform-header">
+          <div
+            class="platform-icon"
+            style="background: #ff000018; color: #ff0000"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -7 48 48">
+              <path
+                fill="#CE1312"
+                d="M19.044,23.269916 L19.0425,9.687742 L32.0115,16.502244 L19.044,23.269916 Z M47.52,7.334163 C47.52,7.334163 47.0505,4.003199 45.612,2.536366 C43.7865,0.610299 41.7405,0.601235 40.803,0.489448 C34.086,0 24.0105,0 24.0105,0 L23.9895,0 C23.9895,0 13.914,0 7.197,0.489448 C6.258,0.601235 4.2135,0.610299 2.3865,2.536366 C0.948,4.003199 0.48,7.334163 0.48,7.334163 C0.48,7.334163 0,11.246723 0,15.157773 L0,18.82561 C0,22.73817 0.48,26.64922 0.48,26.64922 C0.48,26.64922 0.948,29.980184 2.3865,31.447016 C4.2135,33.373084 6.612,33.312658 7.68,33.513574 C11.52,33.885191 24,34 24,34 C24,34 34.086,33.984894 40.803,33.495446 C41.7405,33.382148 43.7865,33.373084 45.612,31.447016 C47.0505,29.980184 47.52,26.64922 47.52,26.64922 C47.52,26.64922 48,22.73817 48,18.82561 L48,15.157773 C48,11.246723 47.52,7.334163 47.52,7.334163 Z"
+              />
+            </svg>
+          </div>
+          <span class="platform-name">YouTube</span>
+        </div>
+      </div>
+
+      <div class="platform-row" data-platform="linkedin">
+        <div class="platform-header">
+          <div
+            class="platform-icon"
+            style="background: #0a66c218; color: #4ea3ff"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-480 -466.815 2160 2160"
+            >
+              <circle cx="600" cy="613.185" r="1080" />
+              <path
+                fill="#fff"
+                d="M306.615 79.694H144.011L892.476 1150.3h162.604ZM0 0h357.328l309.814 450.883L1055.03 0h105.86L714.15 519.295 1200 1226.37H842.672L515.493 750.215 105.866 1226.37H0l468.485-544.568Z"
+              />
+            </svg>
+          </div>
+          <span class="platform-name">X</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a class="linkedin" href="" id="linkedinLink">My Linkedin</a>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
