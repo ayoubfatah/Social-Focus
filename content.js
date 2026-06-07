@@ -150,6 +150,14 @@ function handleX(path) {
     a[href="/messages"] { display: none !important; }
     [aria-label="Home"] { display: none !important; }
     [aria-label="Explore"] { display: none !important; }
+    [aria-label="Follow"] { display: none !important; }
+    [aria-label="Grok"] { display: none !important; }
+    [aria-label="More menu items"] { display: none !important; }
+    [aria-label="Profile"] { display: none !important; }
+    [aria-label="Post"] { display: none !important; }
+    [aria-label="Premium"] { display: none !important; }
+    [aria-label="Creator Studio"] { display: none !important; }
+    [aria-label="Bookmarks"] { display: none !important; }
     [aria-label="Notifications"] { display: none !important; }
   `);
 }
